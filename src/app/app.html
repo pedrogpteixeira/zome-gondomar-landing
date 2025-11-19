@@ -1,0 +1,229 @@
+<main class="page">
+
+  <!-- HERO FULLSCREEN -->
+  <section class="hero-fullscreen">
+    <!-- Troca o caminho da imagem para a tua -->
+    <img src="house.png" class="hero-img" />
+
+    <div class="hero-overlay"></div>
+
+    <img src="logo.png" alt="Logo" class="top-center-image" />
+
+    <div class="hero-content">
+      <h1>Quer vender o seu imóvel?</h1>
+      <p>
+        Responda a algumas perguntas rápidas e entraremos em contacto para uma
+        avaliação personalizada, sem compromisso.
+      </p>
+
+      <button class="hero-btn" (click)="scrollToForm()">
+        Começar avaliação
+      </button>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section class="form-wrapper" id="formulario">
+    <div class="form-header">
+      <h2>Conte-nos mais sobre o seu imóvel</h2>
+      <p>
+        Preencha os campos abaixo para que possamos preparar uma proposta ajustada à realidade
+        do seu imóvel.
+      </p>
+    </div>
+
+    <form
+      name="vender-imovel"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="form-grid"
+    >
+      <!-- Obrigatório para Netlify -->
+      <input type="hidden" name="form-name" value="vender-imovel" />
+
+      <!-- Honeypot anti-spam -->
+      <div class="hidden">
+        <label>
+          Não preencher este campo:
+          <input name="bot-field" />
+        </label>
+      </div>
+
+      <!-- Tipo de imóvel -->
+      <div class="field">
+        <label for="tipoImovel">Tipo de imóvel*</label>
+        <select id="tipoImovel" name="tipoImovel" required>
+          <option value="" disabled selected hidden>Selecione uma opção</option>
+          <option value="apartamento">Apartamento</option>
+          <option value="moradia">Moradia</option>
+          <option value="predio">Predio</option>
+          <option value="comercio">Comércio</option>
+          <option value="terreno">Terreno</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+
+      <!-- Condição do imóvel -->
+      <div class="field">
+        <label for="condicao">Qual é a condição do imóvel?*</label>
+        <select id="condicao" name="condicao" required>
+          <option value="" disabled selected hidden>Selecione uma opção</option>
+          <option value="novo">Novo / Como novo</option>
+          <option value="bom-estado">Bom estado</option>
+          <option value="usado">Usado / a precisar de pequenas obras</option>
+          <option value="para-renovar">Para renovar</option>
+        </select>
+      </div>
+
+      <!-- Quartos -->
+      <div class="field">
+        <label for="quartos">Quantos quartos tem?*</label>
+        <input
+          id="quartos"
+          name="quartos"
+          type="number"
+          min="0"
+          required
+          placeholder="Ex.: 3"
+        />
+      </div>
+
+      <!-- Casas de banho -->
+      <div class="field">
+        <label for="casasBanho">Quantas casas de banho tem?*</label>
+        <input
+          id="casasBanho"
+          name="casasBanho"
+          type="number"
+          min="0"
+          required
+          placeholder="Ex.: 2"
+        />
+      </div>
+
+      <!-- Área -->
+      <div class="field">
+        <label for="area">Estimativa de área em metros quadrados?*</label>
+        <div class="field-inline">
+          <input
+            id="area"
+            name="area"
+            type="number"
+            min="0"
+            required
+            placeholder="Ex.: 120"
+          />
+          <span class="suffix">m²</span>
+        </div>
+      </div>
+
+      <!-- Quando planeia vender -->
+      <div class="field">
+        <label for="quando">Quando planeia vender o seu imóvel?*</label>
+        <select id="quando" name="quando" required>
+          <option value="" disabled selected hidden>Selecione uma opção</option>
+          <option value="imediato">Imediatamente</option>
+          <option value="3-meses">Dentro de 3 meses</option>
+          <option value="6-meses">Dentro de 6 meses</option>
+          <option value="12-meses">Dentro de 12 meses</option>
+          <option value="sem-data">Ainda sem data definida</option>
+        </select>
+      </div>
+
+      <!-- Localização -->
+      <div class="field field-full">
+        <label for="localizacao">Qual a localização do imóvel?*</label>
+        <input
+          id="localizacao"
+          name="localizacao"
+          type="text"
+          required
+          placeholder="Cidade, zona, freguesia ou morada aproximada"
+        />
+      </div>
+
+      <!-- Nome -->
+      <div class="field">
+        <label for="nome">Nome*</label>
+        <input
+          id="nome"
+          name="nome"
+          type="text"
+          required
+          placeholder="O seu nome completo"
+        />
+      </div>
+
+      <!-- Telemóvel -->
+      <div class="field">
+        <label for="telemovel">Telemóvel*</label>
+        <input
+          id="telemovel"
+          name="telemovel"
+          type="tel"
+          required
+          placeholder="Ex.: 9xx xxx xxx"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="field field-full">
+        <label for="email">Email*</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="Ex.: nome@exemplo.com"
+        />
+      </div>
+
+      <!-- Botão -->
+      <div class="actions">
+        <button type="submit" class="submit-btn">
+          Enviar informação
+        </button>
+        <p class="small-note">
+          Ao enviar, concorda em ser contactado para efeitos de avaliação do imóvel.
+        </p>
+      </div>
+    </form>
+  </section>
+
+  <footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-block">
+      <div class="footer-icon">📍</div>
+      <div>
+        <h4>Localização</h4>
+        <p>R. 25 de Abril 124<br>4420-356 Gondomar</p>
+      </div>
+    </div>
+
+    <div class="footer-block">
+      <div class="footer-icon">📞</div>
+      <div>
+        <h4>Telemóvel</h4>
+        <p><a href="tel:+351963844118">+351 999 999 999</a></p>
+      </div>
+    </div>
+
+    <div class="footer-block">
+      <div class="footer-icon">✉️</div>
+      <div>
+        <h4>Email</h4>
+        <p><a href="mailto:info.matosinhos@zome.pt">info.gondomar@zome.pt</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>Horário: 2ª a 6ª — 09:30 às 19:00 | Sábado: 09:30 às 13:00 | Domingo: Encerrado</p>
+  </div>
+</footer>
+
+
+</main>

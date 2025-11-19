@@ -1,0 +1,345 @@
+/* Layout geral */
+.page {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #111827;
+}
+
+/* HERO FULLSCREEN */
+.hero-fullscreen {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Preenche o viewport */
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem preencher sem distorcer */
+  top: 0;
+  left: 0;
+}
+
+/* Leve overlay para ler o texto por cima da imagem */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.2), transparent 50%),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.7));
+}
+
+.top-center-image {
+  position: absolute;
+  top: 1.5rem;      /* distância do topo */
+  left: 50%;        /* coloca o centro da imagem no meio da tela */
+  transform: translateX(-50%);  /* corrige o alinhamento */
+  
+  width: 140px;     /* tamanho da imagem (ajusta à vontade) */
+  height: auto;
+
+  z-index: 10;
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.top-center-image:hover {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.15);
+}
+
+
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  height: 95%;
+  left: 5%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  color: #f9fafb;
+}
+
+
+.hero-content h1 {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.hero-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 2.2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #fbbf24;
+  color: #111827;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.6);
+  background: #f59e0b;
+}
+
+.hero-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* FORMULÁRIO – sem “caixa” à volta, tudo integrado no body */
+.form-wrapper {
+  padding: 4rem 1.5rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.form-header {
+  max-width: 650px;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 1.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.form-header p {
+  font-size: 0.98rem;
+  color: #4b5563;
+}
+
+/* Grid do formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1.8rem;
+}
+
+/* Campos que ocupam a largura toda */
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #111827;
+}
+
+.field input,
+.field select {
+  padding: 0.65rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  background: #f9fafb;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.24);
+  background: #ffffff;
+}
+
+/* Remove o estilo nativo das setas e aplica um ícone custom */
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%239ca3af' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 16px;
+  padding-right: 2.6rem; /* espaço para a seta */
+}
+
+/* Esconde a seta no IE/Edge antigo */
+.field select::-ms-expand {
+  display: none;
+}
+
+
+/* Campo com sufixo m² */
+.field-inline {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  overflow: hidden;
+}
+
+.field-inline input {
+  flex: 1;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0.9rem;
+}
+
+.field-inline input:focus {
+  outline: none;
+}
+
+.field-inline .suffix {
+  padding: 0 0.9rem;
+  font-size: 0.85rem;
+  color: #4b5563;
+  border-left: 1px solid #e5e7eb;
+}
+
+/* Área das ações */
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 2.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2563eb;
+  color: #f9fafb;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.55);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.small-note {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero-content {
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-bottom: 4rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    align-items: stretch;
+  }
+
+  .submit-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* FOOTER */
+.footer {
+  background: #8b8b8b; /* cinzento suave, melhora se preferires */
+  color: #ffffff;
+  padding: 2.5rem 1rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  flex: 1;
+  min-width: 230px;
+}
+
+.footer-icon {
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+.footer-block h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.footer-block p {
+  margin: 0.2rem 0 0;
+  font-size: 1rem;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.footer-block a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-block a:hover {
+  opacity: 0.7;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  opacity: 0.85;
+  font-size: 0.85rem;
+}
+
