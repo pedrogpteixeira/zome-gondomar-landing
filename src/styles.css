@@ -2,3 +2,181 @@
 body {
     margin: 0;
 }
+
+
+/* FORMULÁRIO – sem “caixa” à volta, tudo integrado no body */
+.form-wrapper {
+  padding: 4rem 1.5rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.form-header {
+  max-width: 650px;
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 1.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.form-header p {
+  font-size: 0.98rem;
+  color: #4b5563;
+}
+
+/* Grid do formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1.8rem;
+}
+
+/* Campos que ocupam a largura toda */
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #111827;
+}
+
+.field input,
+.field select {
+  padding: 0.65rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  background: #f9fafb;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.24);
+  background: #ffffff;
+}
+
+/* Remove o estilo nativo das setas e aplica um ícone custom */
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%239ca3af' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 16px;
+  padding-right: 2.6rem; /* espaço para a seta */
+}
+
+/* Esconde a seta no IE/Edge antigo */
+.field select::-ms-expand {
+  display: none;
+}
+
+
+/* Campo com sufixo m² */
+.field-inline {
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  overflow: hidden;
+}
+
+.field-inline input {
+  flex: 1;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0.9rem;
+}
+
+.field-inline input:focus {
+  outline: none;
+}
+
+.field-inline .suffix {
+  padding: 0 0.9rem;
+  font-size: 0.85rem;
+  color: #4b5563;
+  border-left: 1px solid #e5e7eb;
+}
+
+/* Área das ações */
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.submit-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 2.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2563eb;
+  color: #f9fafb;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.55);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.small-note {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero-content {
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-bottom: 4rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    align-items: stretch;
+  }
+
+  .submit-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

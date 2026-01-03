@@ -2,229 +2,100 @@
 
   <!-- HERO FULLSCREEN -->
   <section class="hero-fullscreen">
-    <!-- Troca o caminho da imagem para a tua -->
-    <img src="house.png" class="hero-img" />
-
+    <img src="house.png" class="hero-img" alt="Casa" />
     <div class="hero-overlay"></div>
-
     <img src="logo.png" alt="Logo" class="top-center-image" />
 
     <div class="hero-content">
-      <h1>Quer vender o seu imóvel?</h1>
+      <h1>
+        Como podemos ajudá-lo?
+      </h1>
+
       <p>
-        Responda a algumas perguntas rápidas e entraremos em contacto para uma
-        avaliação personalizada, sem compromisso.
+        {{
+          mode() === 'sell'
+            ? 'Responda a algumas perguntas rápidas e entraremos em contacto para uma avaliação personalizada, sem compromisso.'
+            : 'Diga-nos o que procura e entraremos em contacto com opções ajustadas às suas necessidades.'
+        }}
       </p>
 
-      <button class="hero-btn" (click)="scrollToForm()">
-        Começar avaliação
-      </button>
+      <div class="hero-actions">
+        <button
+          type="button"
+          class="hero-btn hero-btn-secondary"
+          [class.active]="mode() === 'sell'"
+          (click)="setMode('sell')"
+        >
+          Venda
+        </button>
+
+        <button
+          type="button"
+          class="hero-btn"
+          [class.active]="mode() === 'buy'"
+          (click)="setMode('buy')"
+        >
+          Compra
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- FORMULÁRIO -->
-  <section class="form-wrapper" id="formulario">
+  <!-- FORM SECTION -->
+  <section class="form-wrapper" id="form-section">
     <div class="form-header">
-      <h2>Conte-nos mais sobre o seu imóvel</h2>
+      <h2>
+        {{ mode() === 'sell' ? 'Conte-nos mais sobre o seu imóvel' : 'Conte-nos o que procura' }}
+      </h2>
       <p>
-        Preencha os campos abaixo para que possamos preparar uma proposta ajustada à realidade
-        do seu imóvel.
+        {{
+          mode() === 'sell'
+            ? 'Preencha os campos abaixo para que possamos preparar uma proposta ajustada à realidade do seu imóvel.'
+            : 'Preencha os campos abaixo para encontrarmos imóveis compatíveis com o que pretende.'
+        }}
       </p>
     </div>
 
-    <form
-      name="vender-imovel"
-      method="POST"
-      action="/sucesso"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      class="form-grid"
-    >
-      <!-- Obrigatório para Netlify -->
-      <input type="hidden" name="form-name" value="vender-imovel" />
+    @if (mode() === 'sell') {
+      <app-sell-form></app-sell-form>
+    } @else {
+      <app-buy-form></app-buy-form>
+    }
+  </section>
 
-      <!-- Honeypot anti-spam -->
-      <div class="hidden">
-        <label>
-          Não preencher este campo:
-          <input name="bot-field" />
-        </label>
-      </div>
+  <!-- FOOTER (UI em PT como tinhas) -->
+  <footer class="footer">
+    <div class="footer-content">
 
-      <!-- Tipo de imóvel -->
-      <div class="field">
-        <label for="tipoImovel">Tipo de imóvel*</label>
-        <select id="tipoImovel" name="tipoImovel" required>
-          <option value="" disabled selected hidden>Selecione uma opção</option>
-          <option value="apartamento">Apartamento</option>
-          <option value="moradia">Moradia</option>
-          <option value="predio">Predio</option>
-          <option value="comercio">Comércio</option>
-          <option value="terreno">Terreno</option>
-          <option value="outro">Outro</option>
-        </select>
-      </div>
-
-      <!-- Condição do imóvel -->
-      <div class="field">
-        <label for="condicao">Qual é a condição do imóvel?*</label>
-        <select id="condicao" name="condicao" required>
-          <option value="" disabled selected hidden>Selecione uma opção</option>
-          <option value="novo">Novo / Como novo</option>
-          <option value="bom-estado">Bom estado</option>
-          <option value="usado">Usado / A precisar de pequenas obras</option>
-          <option value="para-renovar">Para renovar</option>
-        </select>
-      </div>
-
-      <!-- Quartos -->
-      <div class="field">
-        <label for="quartos">Quantos quartos tem?*</label>
-        <input
-          id="quartos"
-          name="quartos"
-          type="number"
-          min="0"
-          required
-          placeholder="Ex.: 3"
-        />
-      </div>
-
-      <!-- Casas de banho -->
-      <div class="field">
-        <label for="casasBanho">Quantas casas de banho tem?*</label>
-        <input
-          id="casasBanho"
-          name="casasBanho"
-          type="number"
-          min="0"
-          required
-          placeholder="Ex.: 2"
-        />
-      </div>
-
-      <!-- Área -->
-      <div class="field">
-        <label for="area">Estimativa de área em metros quadrados?*</label>
-        <div class="field-inline">
-          <input
-            id="area"
-            name="area"
-            type="number"
-            min="0"
-            required
-            placeholder="Ex.: 120"
-          />
-          <span class="suffix">m²</span>
+      <div class="footer-block">
+        <div class="footer-icon">📍</div>
+        <div>
+          <h4>Localização</h4>
+          <p>R. 25 de Abril 124<br>4420-356 Gondomar</p>
         </div>
       </div>
 
-      <!-- Quando planeia vender -->
-      <div class="field">
-        <label for="quando">Quando planeia vender o seu imóvel?*</label>
-        <select id="quando" name="quando" required>
-          <option value="" disabled selected hidden>Selecione uma opção</option>
-          <option value="imediato">Imediatamente</option>
-          <option value="3-meses">Dentro de 3 meses</option>
-          <option value="6-meses">Dentro de 6 meses</option>
-          <option value="12-meses">Dentro de 12 meses</option>
-          <option value="sem-data">Ainda sem data definida</option>
-        </select>
+      <div class="footer-block">
+        <div class="footer-icon">📞</div>
+        <div>
+          <h4>Telemóvel</h4>
+          <p><a href="tel:+351913760442">+351 913 760 442</a></p>
+        </div>
       </div>
 
-      <!-- Localização -->
-      <div class="field field-full">
-        <label for="localizacao">Qual a localização do imóvel?*</label>
-        <input
-          id="localizacao"
-          name="localizacao"
-          type="text"
-          required
-          placeholder="Cidade, zona, freguesia ou morada aproximada"
-        />
+      <div class="footer-block">
+        <div class="footer-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p><a href="mailto:fernandocosta@zome.pt">fernandocosta&#64;zome.pt</a></p>
+        </div>
       </div>
 
-      <!-- Nome -->
-      <div class="field">
-        <label for="nome">Nome*</label>
-        <input
-          id="nome"
-          name="nome"
-          type="text"
-          required
-          placeholder="O seu nome completo"
-        />
-      </div>
-
-      <!-- Telemóvel -->
-      <div class="field">
-        <label for="telemovel">Telemóvel*</label>
-        <input
-          id="telemovel"
-          name="telemovel"
-          type="tel"
-          required
-          placeholder="Ex.: 9xx xxx xxx"
-        />
-      </div>
-
-      <!-- Email -->
-      <div class="field field-full">
-        <label for="email">Email*</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          placeholder="Ex.: nome@exemplo.com"
-        />
-      </div>
-
-      <!-- Botão -->
-      <div class="actions">
-        <button type="submit" class="submit-btn">
-          Enviar informações
-        </button>
-        <p class="small-note">
-          Ao enviar, concorda em ser contactado para efeitos de avaliação do imóvel.
-        </p>
-      </div>
-    </form>
-  </section>
-
-  <footer class="footer">
-  <div class="footer-content">
-
-    <div class="footer-block">
-      <div class="footer-icon">📍</div>
-      <div>
-        <h4>Localização</h4>
-        <p>R. 25 de Abril 124<br>4420-356 Gondomar</p>
-      </div>
     </div>
 
-    <div class="footer-block">
-      <div class="footer-icon">📞</div>
-      <div>
-        <h4>Telemóvel</h4>
-        <p><a href="tel:+351963844118">+351 913 760 442</a></p>
-      </div>
+    <div class="footer-bottom">
+      <p>Horário: 2ª a 6ª — 09:30 às 19:00 | Sábado: 09:30 às 13:00 | Domingo: Encerrado</p>
     </div>
-
-    <div class="footer-block">
-      <div class="footer-icon">✉️</div>
-      <div>
-        <h4>Email</h4>
-        <p><a href="mailto:fernandocosta@zome.pt">fernandocosta@zome.pt</a></p>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>Horário: 2ª a 6ª — 09:30 às 19:00 | Sábado: 09:30 às 13:00 | Domingo: Encerrado</p>
-  </div>
-</footer>
-
+  </footer>
 
 </main>

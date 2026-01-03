@@ -1,0 +1,95 @@
+<form
+  name="buy-property"
+  method="POST"
+  action="/sucesso"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="form-grid"
+>
+  <input type="hidden" name="form-name" value="comprar-imovel" />
+
+  <div class="hidden">
+    <label>
+      Não preencher este campo:
+      <input name="bot-field" />
+    </label>
+  </div>
+
+  <div class="field">
+    <label for="tipoProcura">Tipo de imóvel*</label>
+    <select id="tipoProcura" name="tipoProcura" required>
+      <option value="" disabled selected hidden>Selecione uma opção</option>
+      <option value="apartamento">Apartamento</option>
+      <option value="moradia">Moradia</option>
+      <option value="predio">Prédio</option>
+      <option value="comercio">Comércio</option>
+      <option value="terreno">Terreno</option>
+      <option value="outro">Outro</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="localizacaoProcura">Localização pretendida*</label>
+    <input
+      id="localizacaoProcura"
+      name="localizacaoProcura"
+      type="text"
+      required
+      placeholder="Ex.: Gondomar, Porto..."
+    />
+  </div>
+
+  <div class="field">
+    <label for="orcamento">Orçamento máximo*</label>
+    <input id="orcamento" name="orcamento" type="number" min="0" required placeholder="Ex.: 250000" />
+  </div>
+
+  <div class="field">
+    <label for="quartosMin">Nº mínimo de quartos*</label>
+    <input id="quartosMin" name="quartosMin" type="number" min="0" required placeholder="Ex.: 2" />
+  </div>
+
+  <div class="field">
+    <label for="prazoCompra">Quando pretende comprar?*</label>
+    <select id="prazoCompra" name="prazoCompra" required>
+      <option value="" disabled selected hidden>Selecione uma opção</option>
+      <option value="imediato">O mais rápido possível</option>
+      <option value="3-meses">Dentro de 3 meses</option>
+      <option value="6-meses">Dentro de 6 meses</option>
+      <option value="12-meses">Dentro de 12 meses</option>
+      <option value="sem-data">Ainda sem data definida</option>
+    </select>
+  </div>
+
+  <div class="field field-full">
+    <label for="preferencias">Preferências / Observações</label>
+    <input
+      id="preferencias"
+      name="preferencias"
+      type="text"
+      placeholder="Ex.: garagem, varanda, elevador..."
+    />
+  </div>
+
+  <div class="field">
+    <label for="nomeCompra">Nome*</label>
+    <input id="nomeCompra" name="nome" type="text" required placeholder="O seu nome completo" />
+  </div>
+
+  <div class="field">
+    <label for="telemovelCompra">Telemóvel*</label>
+    <input id="telemovelCompra" name="telemovel" type="tel" required placeholder="Ex.: 9xx xxx xxx" />
+  </div>
+
+  <div class="field field-full">
+    <label for="emailCompra">Email*</label>
+    <input id="emailCompra" name="email" type="email" required placeholder="Ex.: nome@exemplo.com" />
+  </div>
+
+  <div class="actions">
+    <button type="submit" class="submit-btn">Enviar informações</button>
+    <p class="small-note">
+      Ao enviar, concorda em ser contactado para o ajudar na procura do imóvel.
+    </p>
+  </div>
+</form>
